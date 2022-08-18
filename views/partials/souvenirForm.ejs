@@ -1,0 +1,127 @@
+<%- include('../layout/header.ejs') %>	
+
+<link rel="stylesheet" type = "text/css" href="/styles/form.scss">
+
+<% if (souvenir.id) { %>
+ <div class="container col-12 p-5">
+  <form action="/editProduct" method="post">
+
+    
+    <div class="row">
+      <div class="col-12 col-md-3">
+        <label for="name">Name</label>
+      </div>
+      <div class="col-12 col-md-9">
+        <input type="text" id="name" name="name" placeholder="Souvenir name.." value = "<%= souvenir.name %>">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <label for="quantity">Quantity</label>
+      </div>
+      <div class="col-12 col-md-9">
+        <input type="text" id="quantity" name="quantity" placeholder="Quantity.." value = "<%= souvenir.quantity %>">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-3">
+        <label for="barCode">Barcode</label>
+      </div>
+      <div class="col-12 col-md-9">
+        <input type="text" id="barCode" name="barCode" placeholder="Barcode.." value = "<%= souvenir.barCode %>">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-3">
+        <label for="barCode">Image URL</label>
+      </div>
+      <div class="col-12 col-md-9">
+        <input type="text" id="imageUrl" name="imageUrl" placeholder="Image URL..." value = "<%= souvenir.imageUrl %>">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-3">
+        <label for="description">Description</label>
+      </div>
+      <div class="col-12 col-md-9">
+        <textarea id="description" name="description" placeholder="Description.." style="height:200px" >  <%= souvenir.description %> </textarea>
+      </div>
+    </div>
+
+
+    <div class="row mt-3 ml-1">
+      <input type="submit" value="Submit">
+    </div>
+
+
+  </form>
+</div> 
+<% } else { %>
+
+  <div class="container col-12 p-5">
+    <form action="/addProduct" method="post">
+  
+      
+      <div class="row">
+        <div class="col-12 col-md-3">
+          <label for="name">Name</label>
+        </div>
+        <div class="col-12 col-md-9">
+          <input type="text" id="name" name="name" placeholder="Souvenir name.." >
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-md-3">
+          <label for="quantity">Quantity</label>
+        </div>
+        <div class="col-12 col-md-9">
+          <input type="text" id="quantity" name="quantity" placeholder="Quantity..">
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-12 col-md-3">
+          <label for="barCode">Barcode</label>
+        </div>
+        <div class="col-12 col-md-9">
+          <input type="text" id="barCode" name="barCode" placeholder="Barcode.." >
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-12 col-md-3">
+          <label for="barCode">Image URL</label>
+        </div>
+        <div class="col-12 col-md-9">
+          <input type="text" id="imageUrl" name="imageUrl" placeholder="Image URL..." >
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-12 col-md-3">
+          <label for="description">Description</label>
+        </div>
+        <div class="col-12 col-md-9">
+          <textarea id="description" name="description" placeholder="Description.." style="height:200px;" ></textarea>
+        </div>
+      </div>
+  
+  
+      <div class="row mt-3 ml-1">
+        <input type="submit" value="Submit">
+      </div>
+  
+  
+    </form>
+  </div> 
+
+  <% } %>
+
+
+
+  <%- include('../layout/footer.ejs') %>
