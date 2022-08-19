@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { deleteAllProducts, fetchProducts, deleteProduct, souvenirForm, addProduct, editSouvenir } from '../controllers/products.controller.js'
+import {  fetchProducts, deleteProduct, souvenirForm, addProduct, editSouvenir } from '../controllers/products.controller.js'
 
 const router = Router();
 
@@ -11,11 +11,15 @@ router.get("/add", souvenirForm);
 router.post("/addProduct", addProduct)
 
 // deleting
-router.get("/deleteAll", deleteAllProducts);
+/* router.get("/deleteAll", deleteAllProducts);
+ */
 router.get("/delete/:id", deleteProduct);
 
 // edit
 router.get("/edit/:id", souvenirForm);
 router.post("/editProduct/:id", editSouvenir);
+
+// search
+router.post("/search", fetchProducts)
 
 export default router;
