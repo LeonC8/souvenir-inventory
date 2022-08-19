@@ -2,6 +2,7 @@
 
 <link rel="stylesheet" type="text/css" href="styles/table.scss" />
 <link rel="stylesheet" type="text/css" href="styles/table.css" />
+<link rel="stylesheet" type="text/css" href="styles/home.css" />
 
 <!--
 <div class="main-container">
@@ -44,10 +45,10 @@
 	
 </div> 
 
-<div class="row col-12 p-5">
+<div class="row col-12 p-2 p-md-5 cardsRow" style="margin-left: 0px !important; margin-right: 0px !important">
 	<% if (tableData) { %>
 		<% tableData.forEach(function(souvenir){ %>
-			<div class="card m-3 shadow-lg rounded" style="width: 18rem;">
+			<div class="card souvenirCard m-3  shadow-lg rounded" style="width: 18rem;">
 				<img class="card-img-top" src="<%= souvenir.imageUrl %>" alt="Card image cap">
 				<div class="card-body">
 				  <h5 class="card-title"> <%= souvenir.name %> </h5>

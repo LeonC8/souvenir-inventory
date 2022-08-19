@@ -4,9 +4,8 @@
 
 <% if (souvenir.id) { %>
  <div class="container col-12 p-5">
-  <form action="/editProduct" method="post">
+  <form action="/editProduct/<%= id %>" method="post">
 
-    
     <div class="row">
       <div class="col-12 col-md-3">
         <label for="name">Name</label>

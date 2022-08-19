@@ -16,6 +16,6 @@ router.get("/delete/:id", deleteProduct);
 
 // edit
 router.get("/edit/:id", souvenirForm);
-router.post("/editProduct", editSouvenir);
+router.post("/editProduct/:id", editSouvenir);
 
 export default router;

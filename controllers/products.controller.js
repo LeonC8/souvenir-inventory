@@ -38,12 +38,11 @@ export const deleteProduct = async(req, res) => {
 export const souvenirForm = async(req, res) => {
   if (req.params.id) {
     const souvenir = await Souvenir.findById(req.params.id);
-    res.render('partials/souvenirForm', {souvenir: souvenir});
+    res.render('partials/souvenirForm', {souvenir: souvenir, id: req.params.id});
   } else {
     res.render('partials/souvenirForm', {souvenir: {}});
   }
 }
-
 
 
 export const addProduct = async(req, res) => {
@@ -62,8 +61,8 @@ export const addProduct = async(req, res) => {
     // save
     await instance.save()
 
-    // send 200 OK
-    res.send(200);
+    // redirect home
+    res.redirect('/');
   } catch(error) {
     console.log(error);
     res.send(500);
@@ -71,7 +70,6 @@ export const addProduct = async(req, res) => {
 }
 
 export const editSouvenir = async (req, res) => {
-  await Souvenir.findByIdAndUpdate(req.body.id, req.body);
-  console.log("updated souvenir");
+  await Souvenir.findByIdAndUpdate(req.params.id, req.body);  
   res.redirect('/');
 }

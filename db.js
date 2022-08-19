@@ -17,14 +17,14 @@ const SouvenirSchema = new Schema({
     imageUrl: { type: String },
   });
 
-// creating a model
+// creating a modelgi
 export const Souvenir = mongoose.model('Souvenir', SouvenirSchema)
 
 // Logic to create db and seed all data 
 export const initiDB = (async () => {
 
     const dbConnection = async function(a, b) {
-        const result = await mongoose.connect('mongodb://localhost:27017/mongoose');
+        const result = await mongoose.connect('mongodb+srv://cvetkovskileon:leon2003C@cluster0.styi3ww.mongodb.net/test');
         console.log(result);
     }
 
