@@ -1,5 +1,3 @@
-import sqlite3 from 'sqlite3'
-import { open } from 'sqlite'
 import {readFileSync} from 'fs'
 
 // import mongoose
@@ -10,14 +8,23 @@ const Schema = mongoose.Schema;
 
 // defining schema
 const SouvenirSchema = new Schema({
-    name: { type: String },
-    barCode: { type: String },
-    description: { type: String },
-    quantity: { type: Number },
-    imageUrl: { type: String },
+    name: { type: String, required: [true, "Name is a required field."] },
+    barCode: { type: String, validate: {
+        validator: function(v) {
+          return /\d\d-[a-zA-Z][a-zA-Z]-\d\d/i.test(v);
+        },
+        message: props => `${props.value} is not a valid barcode!`
+      }, required: [true, "Barcode is a required field."] },
+    description: { type: String, validate: {
+        validator: function(v) {
+          return v!='   ';
+        },
+        message: props => "Description is required"}, required: [true, "Description is required."] },
+    quantity: { type: Number, required: [true, "Quantity is a required field."], min: [1, "Must be at least 1."] },
+    imageUrl: { type: String, required: [true, "Image url is required."] },
   });
 
-// creating a modelgi
+// creating a model
 export const Souvenir = mongoose.model('Souvenir', SouvenirSchema)
 
 // Logic to create db and seed all data 
@@ -30,8 +37,9 @@ export const initiDB = (async () => {
 
     dbConnection();
 
-    /* const fileContent = readFileSync('seed.json', 'utf8')
-    if(fileContent) {
+    const fileContent = readFileSync('seed.json', 'utf8')
+    const initialData = await getAllData();
+    if(initialData.length == 0) {
 
         const seedData = JSON.parse(fileContent);
 
@@ -47,7 +55,7 @@ export const initiDB = (async () => {
                 console.log(err ? err : 'Succesfull storing.');
             });
         })
-    } */
+    }
 
     
 })
@@ -55,7 +63,6 @@ export const initiDB = (async () => {
 // Service for fetching all souvenirs
 export const getAllData = async () => {
     
-    // we use empty object 
     const souvenirs = await Souvenir.find();
 
     return souvenirs;
