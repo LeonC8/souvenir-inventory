@@ -18,6 +18,8 @@ export const fetchProducts = async (req, res)  => {
     }
 }
 
+
+
 export const deleteAll = async (req, res) => {
   try {
       await Souvenir.deleteMany({});

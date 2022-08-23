@@ -3,9 +3,8 @@
 /* STARTING APP */
 
 .main-container {
-    display: flex;
     flex-direction: column;
-    padding-bottom: 3em;
+    padding-bottom: 1em;
 }
 
 .add-item-container {
@@ -20,7 +19,7 @@
 .table-container {
     display: flex;
     align-self: center;
-    padding-top: 3em;
+    padding-top: 0.5em;
 }
 
 .table-form {
@@ -29,7 +28,7 @@
 }
 
 td, th {
-    border: 1px solid black;
-    padding: 10px;
+    border: 1px solid rgb(78, 78, 78);
+    padding: 13px;
 }
 

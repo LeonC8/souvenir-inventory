@@ -27,11 +27,13 @@ const SouvenirSchema = new Schema({
 // creating a model
 export const Souvenir = mongoose.model('Souvenir', SouvenirSchema)
 
+// mongodb+srv://cvetkovskileon:leon2003C@cluster0.styi3ww.mongodb.net/test
+
 // Logic to create db and seed all data 
 export const initiDB = (async () => {
 
     const dbConnection = async function(a, b) {
-        const result = await mongoose.connect('mongodb+srv://cvetkovskileon:leon2003C@cluster0.styi3ww.mongodb.net/test');
+        const result = await mongoose.connect('mongodb://mongo_db:27017');
         console.log(result);
     }
 
