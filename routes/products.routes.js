@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {  fetchProducts, deleteProduct, souvenirForm, addProduct, editSouvenir, deleteAll } from '../controllers/products.controller.js'
+import {  fetchProducts, deleteProduct, souvenirForm, addProduct, editSouvenir, deleteAll, filterProducts, filterForm } from '../controllers/products.controller.js'
 
 const router = Router();
 
@@ -11,8 +11,6 @@ router.get("/add", souvenirForm);
 router.post("/addProduct", addProduct)
 
 // deleting
-/* router.get("/deleteAll", deleteAllProducts);
- */
 router.get("/delete/:id", deleteProduct);
 router.get("/deleteAll", deleteAll);
 
@@ -22,5 +20,11 @@ router.post("/editProduct/:id", editSouvenir);
 
 // search
 router.post("/search", fetchProducts)
+
+// filter
+router.get("/filter", filterForm)
+router.post("/filterAction", filterProducts)
+
+
 
 export default router;

@@ -18,8 +18,11 @@
                     <li class="nav-item <% if (home == '1') { %> active <% } else { %>  <% } %>">
                       <a class="nav-link" href="/">Home </a>
                     </li>
-                    <li class="nav-item <% if (home == '0') { %> active <% } else { %>  <% } %>">
+                    <li class="nav-item <% if (home == '0' && filter == '0') { %> active <% } else { %>  <% } %>">
                       <a class="nav-link" href="/add"> <% if (edit == '0') { %> Add <% } else { %> Edit <% } %> </a>
+                    </li>
+                    <li class="nav-item <% if (filter == '1') { %> active <% } else { %>  <% } %>">
+                      <a class="nav-link" href="/filter"> Filter </a>
                     </li>
                   </ul>
 

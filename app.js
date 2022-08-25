@@ -41,7 +41,7 @@ app.use(
   
 
 // App is run on port 3000 so just run http://localhost:3000/ to start app
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, async () => {
     // Create products table and populate on init
     await initiDB();

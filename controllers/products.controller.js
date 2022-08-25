@@ -7,10 +7,10 @@ export const fetchProducts = async (req, res)  => {
     try {
         if (req.body.searchedName) {
           const tableData = await Souvenir.find({ "name": { "$regex": req.body.searchedName, "$options": "i" }});
-          res.render('productsList', { tableData , home: '1', edit: '0'});
+          res.render('productsList', { tableData , home: '1', edit: '0', filter: '0'});
         }
         const tableData = await getAllData();
-        res.render('productsList', { tableData , home: '1', edit: '0'});
+        res.render('productsList', { tableData , home: '1', edit: '0', filter: '0'});
     }
     catch(error) {
       console.log(error)
@@ -45,9 +45,9 @@ export const deleteProduct = async(req, res) => {
 export const souvenirForm = async(req, res) => {
   if (req.params.id) {
     const souvenir = await Souvenir.findById(req.params.id);
-    res.render('partials/souvenirForm', {souvenir: souvenir, id: req.params.id, edit: '1', home: '0', errors: ''});
+    res.render('partials/souvenirForm', {souvenir: souvenir, id: req.params.id, edit: '1', home: '0', errors: '', filter: '0'});
   } else {
-    res.render('partials/souvenirForm', {souvenir: {}, home: '0', edit: '0', errors: ''});
+    res.render('partials/souvenirForm', {souvenir: {}, home: '0', edit: '0', errors: '', filter: '0'});
   }
 }
 
@@ -83,4 +83,35 @@ export const editSouvenir = async (req, res) => {
   } catch(error) {
     formErrorHandling(error.errors, data, res, '1', req.params.id)
   }
+}
+
+export const filterProducts = async (req, res) => {
+  try {
+
+    const filter = {};
+
+    if (req.body.name) {
+      filter.name = { "$regex": req.body.name, "$options": "i" };
+    }
+    if (req.body.barCode) {
+      filter.barCode = req.body.barCode;
+    }
+    if (req.body.description) {
+      filter.description = { "$regex": req.body.description, "$options": "i" };
+    }
+    if (req.body.quantity) {
+      filter.quantity = req.body.quantity;
+    }
+
+    const tableData = await Souvenir.find(filter);
+    res.render('productsList', { tableData , home: '1', edit: '0', filter: '0'});
+    
+  } catch (error) {
+    console.log(error);
+    res.send(500);
+  }
+}
+
+export const filterForm = async (req, res) => {
+  res.render('partials/souvenirForm', {souvenir: {}, home: '0', edit: '0', filter: '1', errors: ''});
 }
